@@ -1,0 +1,36 @@
+
+quiero saber el año de caida como se relaciona con el fall
+en que zonas es mas frecuente encontrar un meterito/verlo caer fall relacionado con geolocalizacion
+que reclass es mas comun?
+que reclas es menos comun?
+cual es el promedio de la masa de los meteoritos?
+de que me sirve a mi la latitud y la longitud?
+relacion de los nulos con respecto a los year
+en que años se encontraron mas meteoritos
+geolocalizacion es redundante
+ver cuanto nametype tengo como hice con fell y found
+como encuentro valores outliers en la masa, o en los años?
+**** te faltaria ver como buscar datos duplicados y cuantificarlos en pyspark
+
+def summary(df):
+    print(f'data shape: {df.shape}')
+    summ = pd.DataFrame(df.dtypes, columns=['Data Type'])
+    summ['Missing#'] = df.isna().sum()
+    summ['Missing%'] = (df.isna().sum())/len(df)
+    summ['Dups'] = df.duplicated().sum()
+    summ['Uniques'] = df.nunique().values
+    summ['Count'] = df.count().values
+    desc = pd.DataFrame(df.describe(include='all').transpose())
+    summ['Min'] = desc['min'].values
+    summ['Max'] = desc['max'].values
+    summ['Average'] = desc['mean'].values
+    summ['Standard Deviation'] = desc['std'].values
+    summ['First Value'] = df.loc[0].values
+    summ['Second Value'] = df.loc[1].values
+    summ['Third Value'] = df.loc[2].values
+
+    display(summ)
+
+summary(df)
+
+docker logs jupyter | grep "token="
